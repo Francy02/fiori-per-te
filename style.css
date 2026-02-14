@@ -493,6 +493,7 @@ body {
   border-left: 2vmin solid #079097;
   background-image: linear-gradient(to bottom, transparent, var(--dark-color) 60%);
   -webkit-mask-image: linear-gradient(to top, transparent 30%, #079097 60%);
+  mask-image: linear-gradient(to top, transparent 30%, #079097 60%);
 }
 .flower__g-right--1 {
   animation: flower-g-right-ans 2.5s linear infinite;
@@ -650,6 +651,7 @@ body {
   border-top-left-radius: 100%;
   border-left: 2vmin solid #079097;
   -webkit-mask-image: linear-gradient(to top, transparent 25%, #079097 50%);
+  mask-image: linear-gradient(to top, transparent 25%, #079097 50%);
   position: relative;
   z-index: 1;
 }
@@ -663,6 +665,7 @@ body {
   box-shadow: inset 0 2px 1vmin rgba(44, 238, 252, 0.2);
   background-image: linear-gradient(to bottom left, transparent, var(--dark-color) 98%), linear-gradient(to bottom right, #23f0ff 45%, transparent 50%, transparent);
   -webkit-mask-image: linear-gradient(135deg, #159faa 40%, transparent 50%, transparent);
+  mask-image: linear-gradient(135deg, #159faa 40%, transparent 50%, transparent);
 }
 .flower__g-fr__leaf--1 {
   left: 20vmin;
@@ -754,6 +757,7 @@ body {
 }
 .long-g--1 .leaf {
   -webkit-mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
+  mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
 }
 .long-g--1 .leaf--1 {
   --w: 5vmin;
@@ -769,6 +773,7 @@ body {
 }
 .long-g--2 .leaf, .long-g--3 .leaf {
   -webkit-mask-image: linear-gradient(to top, transparent 50%, #079097 80%) !important;
+  mask-image: linear-gradient(to top, transparent 50%, #079097 80%) !important;
 }
 .long-g--2 .leaf--1, .long-g--3 .leaf--1 {
   left: -1vmin;
@@ -780,6 +785,7 @@ body {
 }
 .long-g--3 .leaf {
   -webkit-mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
+  mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
 }
 .long-g--4 {
   left: 25vmin;
@@ -789,6 +795,7 @@ body {
 }
 .long-g--4 .leaf {
   -webkit-mask-image: linear-gradient(to top, transparent 50%, #079097 80%) !important;
+  mask-image: linear-gradient(to top, transparent 50%, #079097 80%) !important;
 }
 .long-g--5 {
   left: 42vmin;
@@ -821,6 +828,7 @@ body {
   border-top-left-radius: 100%;
   border-left: 2vmin solid var(--c);
   -webkit-mask-image: linear-gradient(to top, transparent 20%, var(--dark-color));
+  mask-image: linear-gradient(to top, transparent 20%, var(--dark-color));
   transform-origin: bottom center;
 }
 .long-g .leaf--0 {
@@ -985,27 +993,143 @@ body {
   animation-play-state: paused !important;
 }
 
-/* Stile per l'elemento di testo */
-.text {
+/* Stile per il contenitore del testo */
+.text-container {
   position: absolute;
-  top: 5vmin;
+  bottom: 8vmin;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 10vmin; /* Ingrandisce notevolmente il testo */
-  color: #a7ffee;
-  text-shadow: 0 0 1vmin rgba(255, 255, 255, 0.5);
-  animation: text-appear 4s ease-in-out infinite;
-  z-index: 100; /* Assicura che il testo sia in primo piano */
+  z-index: 100;
 }
 
-/* Keyframes per l'animazione del testo */
-@keyframes text-appear {
+/* Stile per l'elemento di testo */
+.text {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-size: 7vmin;
+  font-weight: 500;
+  color: #a7ffee;
+  text-shadow: 0 0 2vmin rgba(167, 255, 238, 0.8), 0 0 4vmin rgba(167, 255, 238, 0.4);
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  animation: text-reveal 4s ease-out forwards, text-sway 2.5s ease-in-out 4s infinite;
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  transform-origin: center bottom;
+}
+
+/* Particelle intorno al testo */
+.text-particle {
+  position: absolute;
+  width: 0.5vmin;
+  height: 0.5vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle, #a7ffee, rgba(167, 255, 238, 0.3));
+  box-shadow: 0 0 0.8vmin rgba(167, 255, 238, 0.8);
+  pointer-events: none;
+}
+
+.text-particle--1 {
+  animation: float-particle-1 3s ease-in-out infinite;
+}
+
+.text-particle--2 {
+  animation: float-particle-2 3.5s ease-in-out infinite;
+}
+
+.text-particle--3 {
+  animation: float-particle-3 4s ease-in-out infinite;
+}
+
+.text-particle--4 {
+  animation: float-particle-4 3.2s ease-in-out infinite;
+}
+
+.text-particle--5 {
+  animation: float-particle-5 3.8s ease-in-out infinite;
+}
+
+/* Animazioni particelle */
+/* Animazione di reveal per il testo */
+@keyframes text-reveal {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+/* Animazione di oscillazione leggera per il testo */
+@keyframes text-sway {
   0%, 100% {
-    opacity: 0;
-    transform: translateX(-50%) scale(0.8);
+    transform: rotate(-1.5deg);
   }
   50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+@keyframes float-particle-1 {
+  0%, 100% {
+    top: -2vmin;
+    left: -3vmin;
+    opacity: 0;
+  }
+  50% {
+    top: -5vmin;
+    left: -5vmin;
     opacity: 1;
-    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes float-particle-2 {
+  0%, 100% {
+    top: -2vmin;
+    right: -3vmin;
+    opacity: 0;
+  }
+  50% {
+    top: -5vmin;
+    right: -5vmin;
+    opacity: 1;
+  }
+}
+
+@keyframes float-particle-3 {
+  0%, 100% {
+    bottom: -2vmin;
+    left: -4vmin;
+    opacity: 0;
+  }
+  50% {
+    bottom: -5vmin;
+    left: -6vmin;
+    opacity: 1;
+  }
+}
+
+@keyframes float-particle-4 {
+  0%, 100% {
+    bottom: -2vmin;
+    right: -4vmin;
+    opacity: 0;
+  }
+  50% {
+    bottom: -5vmin;
+    right: -6vmin;
+    opacity: 1;
+  }
+}
+
+@keyframes float-particle-5 {
+  0%, 100% {
+    top: 0;
+    left: -5vmin;
+    opacity: 0;
+  }
+  50% {
+    top: -3vmin;
+    left: -7vmin;
+    opacity: 1;
   }
 }
